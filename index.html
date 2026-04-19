@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>검사성적서 조회 — Park Electronics</title>
+<style>
+  :root {
+    --green: #41B14A;
+    --green-dark: #2d8a35;
+    --green-light: #e8f7e9;
+    --gray-50: #f8f9fa;
+    --gray-100: #f0f1f2;
+    --gray-200: #e2e4e7;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+    --red: #dc2626;
+    --red-light: #fef2f2;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-900);
+    min-height: 100vh;
+  }
+
+  header {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 60px;
+  }
+  .logo-mark {
+    width: 32px; height: 32px;
+    background: var(--green);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 18px; height: 18px; }
+  .logo-text { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
+  .client-badge {
+    margin-left: auto;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 600;
+    display: none;
+  }
+  .client-badge.visible { display: inline-block; }
+
+  main {
+    max-width: 560px;
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-600);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  /* 접근 차단 화면 */
+  #denied-screen {
+    display: none;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  #denied-screen.visible { display: block; }
+  .denied-icon {
+    width: 56px; height: 56px;
+    background: var(--red-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+  .denied-icon svg { width: 24px; height: 24px; }
+  #denied-screen h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--gray-900);
+  }
+  #denied-screen p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  /* 검색 폼 */
+  #search-screen { display: none; }
+  #search-screen.visible { display: block; }
+
+  .field { margin-bottom: 1rem; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-bottom: 6px;
+  }
+  select, input[type="text"] {
+    width: 100%;
+    height: 44px;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 0 14px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--gray-900);
+    background: #fff;
+    outline: none;
+    transition: border-color .15s;
+    appearance: none;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3af' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  select:focus, input:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(65,177,74,.12);
+  }
+  input::placeholder { color: var(--gray-400); }
+
+  .btn-search {
+    width: 100%;
+    height: 48px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    margin-top: 0.5rem;
+    letter-spacing: -0.2px;
+  }
+  .btn-search:hover  { background: var(--green-dark); }
+  .btn-search:active { transform: scale(0.985); }
+
+  #state-msg {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: var(--gray-400);
+    font-size: 14px;
+    display: none;
+  }
+  #state-msg.visible { display: block; }
+  #state-msg.error   { color: var(--red); }
+
+  .spinner {
+    display: inline-block;
+    width: 20px; height: 20px;
+    border: 2.5px solid var(--gray-200);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #result-card { display: none; }
+  #result-card.visible { display: block; }
+
+  .meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .badge {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .cert-no {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .meta-details {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .meta-details span strong {
+    color: var(--gray-900);
+    font-weight: 500;
+  }
+  .img-wrap {
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--gray-50);
+    text-align: center;
+  }
+  .img-wrap img {
+    max-width: 100%;
+    display: block;
+    margin: auto;
+  }
+  .img-caption {
+    padding: 10px;
+    font-size: 12px;
+    color: var(--gray-400);
+    border-top: 1px solid var(--gray-200);
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray-400);
+    padding: 2rem 1rem;
+  }
+
+  @media (max-width: 480px) {
+    main { margin: 1.5rem auto; }
+    .card { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     ★ 설정 — 여기만 수정하세요
+     ══════════════════════════════════════════ -->
+<script>
+const CONFIG = {
+  SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vST2q6GtZFEh0HAwLemM-pejGdvuvsjsApAhxM7w-Ogh3QnbmcN109PrxwgPzoR2n2MR6DpKiadbYMD/pub?gid=0&single=true&output=csv",
+
+  BASE_URL: "https://cert.parkelec.co.kr",
+
+  CLIENTS: [
+    { client: "snt", key: "PE-SNT", label: "SNT다이내믹스" },
+  ]
+};
+</script>
+<!-- ══════════════════════════════════════════ -->
+
+<header>
+  <div class="logo-mark">
+    <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9" cy="9" r="7.5" stroke="white" stroke-width="1.5"/>
+      <path d="M6 9h6M9 6v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <span class="logo-text">Park Electronics</span>
+  <span class="client-badge" id="client-badge"></span>
+</header>
+
+<main>
+
+  <!-- 접근 차단 -->
+  <div id="denied-screen">
+    <div class="card">
+      <div class="denied-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="#dc2626" stroke-width="1.5"/>
+          <path d="M15 9l-6 6M9 9l6 6" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2>접근 권한이 없습니다</h2>
+      <p>이 페이지는 인가된 접근 경로를 통해서만<br>열람할 수 있습니다.<br><br>담당자에게 문의해 주세요.<br>Tel. 051-000-0000</p>
+    </div>
+  </div>
+
+  <!-- 검색 폼 -->
+  <div id="search-screen">
+
+    <div class="card">
+      <p class="card-title">성적서 검색</p>
+
+      <div class="field">
+        <label>제품 종류</label>
+        <select id="sel-product">
+          <option value="">— 선택하세요 —</option>
+          <option value="압력센서(3000 psi)">압력센서 (3000 psi)</option>
+          <option value="압력센서(60 bar)">압력센서 (60 bar)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>성적서 번호</label>
+        <input type="text" id="inp-no" placeholder="PE-260415-001" autocomplete="off" autocapitalize="characters">
+      </div>
+
+      <button class="btn-search" onclick="doSearch()">조회</button>
+    </div>
+
+    <p id="state-msg"></p>
+
+    <div class="card" id="result-card">
+      <div class="meta-row">
+        <span class="badge" id="r-type"></span>
+        <span class="cert-no" id="r-no"></span>
+      </div>
+      <div class="meta-details">
+        <span>발행일 <strong id="r-date"></strong></span>
+        <span>모델명 <strong id="r-model"></strong></span>
+      </div>
+      <div class="img-wrap">
+        <img id="r-img" src="" alt="검사성적서 이미지"
+          onerror="this.parentElement.innerHTML='<p style=\'padding:2rem;color:#9ca3af;font-size:13px\'>이미지를 불러올 수 없습니다.<br>Drive 파일 공유 설정을 확인해 주세요.</p>'">
+        <p class="img-caption">검사성적서 원본 이미지</p>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>Park Electronics Inc. — 부산 &nbsp;|&nbsp; Tel. 051-000-0000</footer>
+
+<script>
+function $(id) { return document.getElementById(id); }
+
+/* ── Drive 링크 → 직접 표시 URL ── */
+function driveViewUrl(link) {
+  const m = link.match(/\/file\/d\/([^\/\?]+)/);
+  if (m) return `https://drive.google.com/uc?export=view&id=${m[1]}`;
+  const m2 = link.match(/[?&]id=([^&]+)/);
+  if (m2) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
+  return link;
+}
+
+/* ── CSV 파싱 ── */
+function parseCsv(text) {
+  const rows = [];
+  const lines = text.trim().split('\n');
+  for (let i = 1; i < lines.length; i++) {
+    const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+    if (cols.length >= 3) rows.push(cols);
+  }
+  return rows;
+}
+
+/* ── 상태 메시지 ── */
+function showState(msg, isError = false, showSpinner = false) {
+  const el = $('state-msg');
+  el.innerHTML = showSpinner ? `<span class="spinner"></span>${msg}` : msg;
+  el.className = 'visible' + (isError ? ' error' : '');
+  $('result-card').className = 'card';
+}
+function clearState() { $('state-msg').className = ''; }
+
+/* ── 인증 확인 ── */
+function checkAuth() {
+  const params = new URLSearchParams(location.search);
+  const clientParam = params.get('client');
+  const keyParam    = params.get('key');
+
+  const matched = CONFIG.CLIENTS.find(
+    c => c.client === clientParam && c.key === keyParam
+  );
+
+  if (matched) {
+    $('search-screen').className = 'visible';
+    const badge = $('client-badge');
+    badge.textContent = matched.label;
+    badge.className = 'client-badge visible';
+    return matched.client;
+  } else {
+    $('denied-screen').className = 'visible';
+    return null;
+  }
+}
+
+/* ── 검색 ── */
+let currentClient = null;
+
+async function doSearch() {
+  const product = $('sel-product').value.trim();
+  const certNo  = $('inp-no').value.trim().toUpperCase();
+
+  if (!product) { showState('제품 종류를 선택해 주세요.', true); return; }
+  if (!certNo)  { showState('성적서 번호를 입력해 주세요.', true); return; }
+
+  showState('조회 중...', false, true);
+
+  let rows;
+  try {
+    const res = await fetch(CONFIG.SHEET_CSV_URL + '&t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    rows = parseCsv(await res.text());
+  } catch(e) {
+    showState('데이터를 불러올 수 없습니다.<br>잠시 후 다시 시도해 주세요.', true);
+    return;
+  }
+
+  // 컬럼: [0]제품종류 [1]성적서번호 [2]이미지링크 [3]발행일 [4]모델명 [5]client
+  const found = rows.find(r =>
+    r[1].toUpperCase() === certNo &&
+    r[0].replace(/\s/g,'') === product.replace(/\s/g,'') &&
+    r[5] === currentClient
+  );
+
+  if (!found) {
+    showState(`"${certNo}" 성적서를 찾을 수 없습니다.`, true);
+    return;
+  }
+
+  clearState();
+  $('r-type').textContent  = found[0];
+  $('r-no').textContent    = found[1];
+  $('r-date').textContent  = found[3] || '—';
+  $('r-model').textContent = found[4] || '—';
+  $('r-img').src = driveViewUrl(found[2]);
+  $('result-card').className = 'card visible';
+}
+
+/* ── 초기화 ── */
+window.addEventListener('DOMContentLoaded', () => {
+  currentClient = checkAuth();
+
+  $('inp-no').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+});
+</script>
+
+</body>
+</html>
