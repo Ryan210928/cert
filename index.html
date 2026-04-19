@@ -10,7 +10,6 @@
     --green-dark: #2d8a35;
     --green-light: #e8f7e9;
     --gray-50: #f8f9fa;
-    --gray-100: #f0f1f2;
     --gray-200: #e2e4e7;
     --gray-400: #9ca3af;
     --gray-600: #4b5563;
@@ -26,7 +25,6 @@
     color: var(--gray-900);
     min-height: 100vh;
   }
-
   header {
     background: #fff;
     border-bottom: 1px solid var(--gray-200);
@@ -34,16 +32,9 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    height: 60px;
+    height: 64px;
   }
-  .logo-mark {
-    width: 32px; height: 32px;
-    background: var(--green);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .logo-mark svg { width: 18px; height: 18px; }
-  .logo-text { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
+  .logo-img { height: 36px; width: auto; display: block; }
   .client-badge {
     margin-left: auto;
     font-size: 12px;
@@ -55,13 +46,7 @@
     display: none;
   }
   .client-badge.visible { display: inline-block; }
-
-  main {
-    max-width: 560px;
-    margin: 2.5rem auto;
-    padding: 0 1rem;
-  }
-
+  main { max-width: 560px; margin: 2.5rem auto; padding: 0 1rem; }
   .card {
     background: #fff;
     border: 1px solid var(--gray-200);
@@ -70,217 +55,87 @@
     margin-bottom: 1.25rem;
   }
   .card-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gray-600);
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
+    font-size: 13px; font-weight: 600; color: var(--gray-600);
+    letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 1.25rem;
   }
-
-  /* 접근 차단 화면 */
-  #denied-screen {
-    display: none;
-    text-align: center;
-    padding: 3rem 1.5rem;
-  }
+  #denied-screen { display: none; text-align: center; padding: 3rem 1.5rem; }
   #denied-screen.visible { display: block; }
   .denied-icon {
-    width: 56px; height: 56px;
-    background: var(--red-light);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.25rem;
+    width: 56px; height: 56px; background: var(--red-light); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;
   }
   .denied-icon svg { width: 24px; height: 24px; }
-  #denied-screen h2 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--gray-900);
-  }
-  #denied-screen p {
-    font-size: 14px;
-    color: var(--gray-600);
-    line-height: 1.7;
-  }
-
-  /* 검색 폼 */
+  #denied-screen h2 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  #denied-screen p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
   #search-screen { display: none; }
   #search-screen.visible { display: block; }
-
   .field { margin-bottom: 1rem; }
-  .field label {
-    display: block;
-    font-size: 13px;
-    color: var(--gray-600);
-    margin-bottom: 6px;
-  }
+  .field label { display: block; font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
   select, input[type="text"] {
-    width: 100%;
-    height: 44px;
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 0 14px;
-    font-size: 15px;
-    font-family: inherit;
-    color: var(--gray-900);
-    background: #fff;
-    outline: none;
-    transition: border-color .15s;
-    appearance: none;
+    width: 100%; height: 44px; border: 1px solid var(--gray-200);
+    border-radius: 8px; padding: 0 14px; font-size: 15px; font-family: inherit;
+    color: var(--gray-900); background: #fff; outline: none;
+    transition: border-color .15s; appearance: none;
   }
   select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3af' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px;
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
   }
-  select:focus, input:focus {
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(65,177,74,.12);
-  }
+  select:focus, input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(65,177,74,.12); }
   input::placeholder { color: var(--gray-400); }
-
   .btn-search {
-    width: 100%;
-    height: 48px;
-    background: var(--green);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: background .15s, transform .1s;
-    margin-top: 0.5rem;
-    letter-spacing: -0.2px;
+    width: 100%; height: 48px; background: var(--green); color: #fff; border: none;
+    border-radius: 8px; font-size: 16px; font-weight: 600; font-family: inherit;
+    cursor: pointer; transition: background .15s, transform .1s; margin-top: 0.5rem;
   }
   .btn-search:hover  { background: var(--green-dark); }
   .btn-search:active { transform: scale(0.985); }
-
-  #state-msg {
-    text-align: center;
-    padding: 1.5rem 0;
-    color: var(--gray-400);
-    font-size: 14px;
-    display: none;
-  }
+  #state-msg { text-align: center; padding: 1.5rem 0; color: var(--gray-400); font-size: 14px; display: none; }
   #state-msg.visible { display: block; }
   #state-msg.error   { color: var(--red); }
-
   .spinner {
-    display: inline-block;
-    width: 20px; height: 20px;
-    border: 2.5px solid var(--gray-200);
-    border-top-color: var(--green);
-    border-radius: 50%;
-    animation: spin .7s linear infinite;
-    vertical-align: middle;
-    margin-right: 8px;
+    display: inline-block; width: 20px; height: 20px;
+    border: 2.5px solid var(--gray-200); border-top-color: var(--green);
+    border-radius: 50%; animation: spin .7s linear infinite;
+    vertical-align: middle; margin-right: 8px;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   #result-card { display: none; }
   #result-card.visible { display: block; }
-
-  .meta-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 1rem;
-  }
+  .meta-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 1rem; }
   .badge {
-    font-size: 12px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    background: var(--green-light);
-    color: var(--green-dark);
-    font-weight: 600;
-    white-space: nowrap;
+    font-size: 12px; padding: 3px 10px; border-radius: 20px;
+    background: var(--green-light); color: var(--green-dark); font-weight: 600; white-space: nowrap;
   }
-  .cert-no {
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
-  .meta-details {
-    display: flex;
-    gap: 16px;
-    font-size: 13px;
-    color: var(--gray-600);
-    margin-bottom: 1.25rem;
-    flex-wrap: wrap;
-  }
-  .meta-details span strong {
-    color: var(--gray-900);
-    font-weight: 500;
-  }
-  .img-wrap {
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--gray-50);
-    text-align: center;
-  }
-  .img-wrap img {
-    max-width: 100%;
-    display: block;
-    margin: auto;
-  }
-  .img-caption {
-    padding: 10px;
-    font-size: 12px;
-    color: var(--gray-400);
-    border-top: 1px solid var(--gray-200);
-  }
-
-  footer {
-    text-align: center;
-    font-size: 12px;
-    color: var(--gray-400);
-    padding: 2rem 1rem;
-  }
-
-  @media (max-width: 480px) {
-    main { margin: 1.5rem auto; }
-    .card { padding: 1.25rem; }
-  }
+  .cert-no { font-size: 18px; font-weight: 700; letter-spacing: -0.5px; }
+  .meta-details { display: flex; gap: 16px; font-size: 13px; color: var(--gray-600); margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .meta-details span strong { color: var(--gray-900); font-weight: 500; }
+  .img-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; background: var(--gray-50); text-align: center; }
+  .img-wrap img { max-width: 100%; display: block; margin: auto; }
+  .img-caption { padding: 10px; font-size: 12px; color: var(--gray-400); border-top: 1px solid var(--gray-200); }
+  footer { text-align: center; font-size: 12px; color: var(--gray-400); padding: 2rem 1rem; }
+  @media (max-width: 480px) { main { margin: 1.5rem auto; } .card { padding: 1.25rem; } }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     ★ 설정 — 여기만 수정하세요
-     ══════════════════════════════════════════ -->
 <script>
 const CONFIG = {
   SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vST2q6GtZFEh0HAwLemM-pejGdvuvsjsApAhxM7w-Ogh3QnbmcN109PrxwgPzoR2n2MR6DpKiadbYMD/pub?gid=0&single=true&output=csv",
-
   BASE_URL: "https://cert.parkelec.co.kr",
-
   CLIENTS: [
     { client: "snt", key: "PE-SNT", label: "SNT다이내믹스" },
   ]
 };
 </script>
-<!-- ══════════════════════════════════════════ -->
 
 <header>
-  <div class="logo-mark">
-    <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="9" cy="9" r="7.5" stroke="white" stroke-width="1.5"/>
-      <path d="M6 9h6M9 6v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-  </div>
-  <span class="logo-text">Park Electronics</span>
+  <img class="logo-img" src="data:image/jpeg;base64,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" alt="Park Electronics">
   <span class="client-badge" id="client-badge"></span>
 </header>
 
 <main>
 
-  <!-- 접근 차단 -->
   <div id="denied-screen">
     <div class="card">
       <div class="denied-icon">
@@ -290,16 +145,13 @@ const CONFIG = {
         </svg>
       </div>
       <h2>접근 권한이 없습니다</h2>
-      <p>이 페이지는 인가된 접근 경로를 통해서만<br>열람할 수 있습니다.<br><br>담당자에게 문의해 주세요.<br>Tel. 051-000-0000</p>
+      <p>이 페이지는 인가된 접근 경로를 통해서만<br>열람할 수 있습니다.<br><br>담당자에게 문의해 주세요.<br>Tel. 051-332-9637</p>
     </div>
   </div>
 
-  <!-- 검색 폼 -->
   <div id="search-screen">
-
     <div class="card">
       <p class="card-title">성적서 검색</p>
-
       <div class="field">
         <label>제품 종류</label>
         <select id="sel-product">
@@ -308,12 +160,10 @@ const CONFIG = {
           <option value="압력센서(60 bar)">압력센서 (60 bar)</option>
         </select>
       </div>
-
       <div class="field">
         <label>성적서 번호</label>
         <input type="text" id="inp-no" placeholder="PE-260415-001" autocomplete="off" autocapitalize="characters">
       </div>
-
       <button class="btn-search" onclick="doSearch()">조회</button>
     </div>
 
@@ -334,26 +184,23 @@ const CONFIG = {
         <p class="img-caption">검사성적서 원본 이미지</p>
       </div>
     </div>
-
   </div>
 
 </main>
 
-<footer>Park Electronics Inc. — 부산 &nbsp;|&nbsp; Tel. 051-000-0000</footer>
+<footer>Park Electronics Inc. — 부산 &nbsp;|&nbsp; Tel. 051-332-9637</footer>
 
 <script>
 function $(id) { return document.getElementById(id); }
 
-/* ── Drive 링크 → 직접 표시 URL ── */
 function driveViewUrl(link) {
   const m = link.match(/\/file\/d\/([^\/\?]+)/);
-  if (m) return `https://drive.google.com/uc?export=view&id=${m[1]}`;
+  if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w2000`;
   const m2 = link.match(/[?&]id=([^&]+)/);
-  if (m2) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
+  if (m2) return `https://drive.google.com/thumbnail?id=${m2[1]}&sz=w2000`;
   return link;
 }
 
-/* ── CSV 파싱 ── */
 function parseCsv(text) {
   const rows = [];
   const lines = text.trim().split('\n');
@@ -364,7 +211,6 @@ function parseCsv(text) {
   return rows;
 }
 
-/* ── 상태 메시지 ── */
 function showState(msg, isError = false, showSpinner = false) {
   const el = $('state-msg');
   el.innerHTML = showSpinner ? `<span class="spinner"></span>${msg}` : msg;
@@ -373,16 +219,13 @@ function showState(msg, isError = false, showSpinner = false) {
 }
 function clearState() { $('state-msg').className = ''; }
 
-/* ── 인증 확인 ── */
 function checkAuth() {
   const params = new URLSearchParams(location.search);
   const clientParam = params.get('client');
   const keyParam    = params.get('key');
-
   const matched = CONFIG.CLIENTS.find(
     c => c.client === clientParam && c.key === keyParam
   );
-
   if (matched) {
     $('search-screen').className = 'visible';
     const badge = $('client-badge');
@@ -395,7 +238,6 @@ function checkAuth() {
   }
 }
 
-/* ── 검색 ── */
 let currentClient = null;
 
 async function doSearch() {
@@ -417,7 +259,6 @@ async function doSearch() {
     return;
   }
 
-  // 컬럼: [0]제품종류 [1]성적서번호 [2]이미지링크 [3]발행일 [4]모델명 [5]client
   const found = rows.find(r =>
     r[1].toUpperCase() === certNo &&
     r[0].replace(/\s/g,'') === product.replace(/\s/g,'') &&
@@ -438,10 +279,8 @@ async function doSearch() {
   $('result-card').className = 'card visible';
 }
 
-/* ── 초기화 ── */
 window.addEventListener('DOMContentLoaded', () => {
   currentClient = checkAuth();
-
   $('inp-no').addEventListener('keydown', e => {
     if (e.key === 'Enter') doSearch();
   });
