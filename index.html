@@ -270,7 +270,7 @@ const CONFIG = {
 function $(id) { return document.getElementById(id); }
 
 function driveViewUrl(link) {
-  var m = link.match(/\/file\/d\/([^\/\?]+)/);
+  var m = link.match(/\/file\/d\/([^\/\?&]+)/);
   if (m) return 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w2000';
   var m2 = link.match(/[?&]id=([^&]+)/);
   if (m2) return 'https://drive.google.com/thumbnail?id=' + m2[1] + '&sz=w2000';
