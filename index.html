@@ -336,7 +336,7 @@ function doSearch() {
 
   showState('조회 중...', false, true);
 
-  fetch(CONFIG.SHEET_CSV_URL + '&t=' + Date.now())
+  fetch(CONFIG.SHEET_CSV_URL + '&t=' + Date.now(), { redirect: 'follow', mode: 'cors' })
     .then(function(res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.text();
