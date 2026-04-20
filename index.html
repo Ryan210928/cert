@@ -19,27 +19,10 @@
     --radius: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-    background: var(--gray-50);
-    color: var(--gray-900);
-    min-height: 100vh;
-  }
-  header {
-    background: #fff;
-    border-bottom: 1px solid var(--gray-200);
-    padding: 0 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    height: 64px;
-  }
+  body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: var(--gray-50); color: var(--gray-900); min-height: 100vh; }
+  header { background: #fff; border-bottom: 1px solid var(--gray-200); padding: 0 1.5rem; display: flex; align-items: center; gap: 12px; height: 64px; }
   .logo-text { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; color: var(--green-dark); }
-  .client-badge {
-    margin-left: auto; font-size: 12px; padding: 4px 12px;
-    border-radius: 20px; background: var(--green-light); color: var(--green-dark);
-    font-weight: 600; display: none;
-  }
+  .client-badge { margin-left: auto; font-size: 12px; padding: 4px 12px; border-radius: 20px; background: var(--green-light); color: var(--green-dark); font-weight: 600; display: none; }
   .client-badge.visible { display: inline-block; }
   main { max-width: 560px; margin: 2.5rem auto; padding: 0 1rem; }
   .card { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; }
@@ -54,32 +37,17 @@
   #search-screen.visible { display: block; }
   .field { margin-bottom: 1rem; }
   .field label { display: block; font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
-  select, input[type="text"] {
-    width: 100%; height: 44px; border: 1px solid var(--gray-200); border-radius: 8px;
-    padding: 0 14px; font-size: 15px; font-family: inherit; color: var(--gray-900);
-    background: #fff; outline: none; transition: border-color .15s; appearance: none;
-  }
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3af' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
-  }
+  select, input[type="text"] { width: 100%; height: 44px; border: 1px solid var(--gray-200); border-radius: 8px; padding: 0 14px; font-size: 15px; font-family: inherit; color: var(--gray-900); background: #fff; outline: none; transition: border-color .15s; appearance: none; }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3af' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
   select:focus, input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(65,177,74,.12); }
   input::placeholder { color: var(--gray-400); }
-  .btn-search {
-    width: 100%; height: 48px; background: var(--green); color: #fff; border: none;
-    border-radius: 8px; font-size: 16px; font-weight: 600; font-family: inherit;
-    cursor: pointer; transition: background .15s, transform .1s; margin-top: 0.5rem;
-  }
+  .btn-search { width: 100%; height: 48px; background: var(--green); color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; font-family: inherit; cursor: pointer; transition: background .15s, transform .1s; margin-top: 0.5rem; }
   .btn-search:hover { background: var(--green-dark); }
   .btn-search:active { transform: scale(0.985); }
   #state-msg { text-align: center; padding: 1.5rem 0; color: var(--gray-400); font-size: 14px; display: none; }
   #state-msg.visible { display: block; }
   #state-msg.error { color: var(--red); }
-  .spinner {
-    display: inline-block; width: 20px; height: 20px;
-    border: 2.5px solid var(--gray-200); border-top-color: var(--green);
-    border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 8px;
-  }
+  .spinner { display: inline-block; width: 20px; height: 20px; border: 2.5px solid var(--gray-200); border-top-color: var(--green); border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 8px; }
   @keyframes spin { to { transform: rotate(360deg); } }
   #result-card { display: none; }
   #result-card.visible { display: block; }
@@ -148,11 +116,9 @@ var CONFIG = {
         <label>성적서 번호</label>
         <input type="text" id="inp-no" placeholder="PE-260415-001" autocomplete="off" autocapitalize="characters">
       </div>
-      <button class="btn-search" onclick="doSearch()">조회</button>
+      <button class="btn-search" id="btn-search">조회</button>
     </div>
-
     <p id="state-msg"></p>
-
     <div class="card" id="result-card">
       <div class="meta-row">
         <span class="badge" id="r-type"></span>
@@ -163,8 +129,8 @@ var CONFIG = {
         <span>모델명 <strong id="r-model"></strong></span>
       </div>
       <div class="img-wrap">
-        <img id="r-img" src="" alt="검사성적서 이미지"
-          onerror="this.parentElement.innerHTML='<p style=\'padding:2rem;color:#9ca3af;font-size:13px\'>이미지를 불러올 수 없습니다.<br>Drive 파일 공유 설정을 확인해 주세요.</p>'">
+        <img id="r-img" src="" alt="검사성적서 이미지" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <p style="display:none;padding:2rem;color:#9ca3af;font-size:13px">이미지를 불러올 수 없습니다.<br>Drive 공유 설정을 확인해 주세요.</p>
         <p class="img-caption">검사성적서 원본 이미지</p>
       </div>
     </div>
@@ -191,132 +157,122 @@ var CONFIG = {
 </footer>
 
 <script>
-function $(id) { return document.getElementById(id); }
+function ge(id) { return document.getElementById(id); }
 
-// Drive URL → thumbnail URL
 function driveViewUrl(link) {
-  var m = link.match(/\/file\/d\/([^\/\?&]+)/);
+  var m = link.match(/\/file\/d\/([^\/\?&#]+)/);
   if (m) return 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w2000';
   return link;
 }
 
-// 올바른 CSV 파서 (따옴표로 감싸진 필드 처리)
 function parseCsvLine(line) {
-  var result = [];
-  var cur = '';
-  var inQuote = false;
+  var result = [], cur = '', inQ = false;
   for (var i = 0; i < line.length; i++) {
-    var ch = line[i];
-    if (inQuote) {
-      if (ch === '"') {
-        if (line[i+1] === '"') { cur += '"'; i++; }
-        else inQuote = false;
-      } else {
-        cur += ch;
-      }
+    var c = line[i];
+    if (inQ) {
+      if (c === '"' && line[i+1] === '"') { cur += '"'; i++; }
+      else if (c === '"') { inQ = false; }
+      else { cur += c; }
     } else {
-      if (ch === '"') { inQuote = true; }
-      else if (ch === ',') { result.push(cur.trim()); cur = ''; }
-      else { cur += ch; }
+      if (c === '"') { inQ = true; }
+      else if (c === ',') { result.push(cur); cur = ''; }
+      else { cur += c; }
     }
   }
-  result.push(cur.trim());
+  result.push(cur);
   return result;
 }
 
 function parseCsv(text) {
-  var rows = [];
-  var lines = text.trim().split('\n');
+  var rows = [], lines = text.replace(/\r/g, '').split('\n');
   for (var i = 1; i < lines.length; i++) {
-    if (!lines[i].trim()) continue;
-    var cols = parseCsvLine(lines[i]);
-    if (cols.length >= 3) rows.push(cols);
+    if (lines[i].trim()) rows.push(parseCsvLine(lines[i]));
   }
   return rows;
 }
 
-function normalize(str) {
-  return str.replace(/\s/g, '').toLowerCase();
-}
+function norm(s) { return s.replace(/\s/g, '').toLowerCase(); }
 
-function showState(msg, isError, showSpinner) {
-  var el = $('state-msg');
-  el.innerHTML = showSpinner ? '<span class="spinner"></span>' + msg : msg;
-  el.className = 'visible' + (isError ? ' error' : '');
-  $('result-card').className = 'card';
+function showState(msg, isErr, spin) {
+  var el = ge('state-msg');
+  el.innerHTML = spin ? '<span class="spinner"></span>' + msg : msg;
+  el.className = 'visible' + (isErr ? ' error' : '');
+  ge('result-card').className = 'card';
 }
-function clearState() { $('state-msg').className = ''; }
-
-function checkAuth() {
-  var params = new URLSearchParams(location.search);
-  var clientParam = params.get('client');
-  var keyParam = params.get('key');
-  var matched = null;
-  for (var i = 0; i < CONFIG.CLIENTS.length; i++) {
-    if (CONFIG.CLIENTS[i].client === clientParam && CONFIG.CLIENTS[i].key === keyParam) {
-      matched = CONFIG.CLIENTS[i]; break;
-    }
-  }
-  if (matched) {
-    $('search-screen').className = 'visible';
-    $('client-badge').textContent = matched.label;
-    $('client-badge').className = 'client-badge visible';
-    return matched.client;
-  } else {
-    $('denied-screen').className = 'visible';
-    return null;
-  }
-}
+function clearState() { ge('state-msg').className = ''; }
 
 var currentClient = null;
 
+function checkAuth() {
+  var p = new URLSearchParams(location.search);
+  var cp = p.get('client'), kp = p.get('key'), m = null;
+  for (var i = 0; i < CONFIG.CLIENTS.length; i++) {
+    if (CONFIG.CLIENTS[i].client === cp && CONFIG.CLIENTS[i].key === kp) { m = CONFIG.CLIENTS[i]; break; }
+  }
+  if (m) {
+    ge('search-screen').className = 'visible';
+    ge('client-badge').textContent = m.label;
+    ge('client-badge').className = 'client-badge visible';
+    return m.client;
+  }
+  ge('denied-screen').className = 'visible';
+  return null;
+}
+
 function doSearch() {
-  var product = $('sel-product').value.trim();
-  var certNo  = $('inp-no').value.trim().toUpperCase();
+  var product = ge('sel-product').value.trim();
+  var certNo  = ge('inp-no').value.trim().toUpperCase();
   if (!product) { showState('제품 종류를 선택해 주세요.', true, false); return; }
   if (!certNo)  { showState('성적서 번호를 입력해 주세요.', true, false); return; }
+
   showState('조회 중...', false, true);
 
-  fetch(CONFIG.SHEET_CSV_URL + '&t=' + Date.now(), { redirect: 'follow' })
-    .then(function(res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.text();
-    })
-    .then(function(text) {
-      var rows = parseCsv(text);
-      var found = null;
-      for (var i = 0; i < rows.length; i++) {
-        var r = rows[i];
-        if (r[1].toUpperCase() === certNo &&
-            normalize(r[0]) === normalize(product) &&
-            r[5] === currentClient) {
-          found = r; break;
-        }
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', CONFIG.SHEET_CSV_URL + '&t=' + Date.now(), true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState !== 4) return;
+    if (xhr.status !== 200) {
+      showState('데이터를 불러올 수 없습니다. (HTTP ' + xhr.status + ')', true, false);
+      return;
+    }
+    var rows = parseCsv(xhr.responseText);
+    var found = null;
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      if (r[1] && r[1].toUpperCase() === certNo &&
+          r[0] && norm(r[0]) === norm(product) &&
+          r[5] && r[5].trim() === currentClient) {
+        found = r; break;
       }
-      if (!found) {
-        showState('"' + certNo + '" 성적서를 찾을 수 없습니다.', true, false);
-        return;
-      }
-      clearState();
-      $('r-type').textContent  = found[0];
-      $('r-no').textContent    = found[1];
-      $('r-date').textContent  = found[3] || '—';
-      $('r-model').textContent = found[4] || '—';
-      $('r-img').src = driveViewUrl(found[2]);
-      $('result-card').className = 'card visible';
-    })
-    .catch(function(err) {
-      showState('데이터를 불러올 수 없습니다.<br>잠시 후 다시 시도해 주세요.', true, false);
-    });
+    }
+    if (!found) {
+      showState('"' + certNo + '" 성적서를 찾을 수 없습니다.', true, false);
+      return;
+    }
+    clearState();
+    ge('r-type').textContent  = found[0];
+    ge('r-no').textContent    = found[1];
+    ge('r-date').textContent  = found[3] || '—';
+    ge('r-model').textContent = found[4] || '—';
+    var imgEl = ge('r-img');
+    imgEl.style.display = 'block';
+    imgEl.nextElementSibling.style.display = 'none';
+    imgEl.src = driveViewUrl(found[2]);
+    ge('result-card').className = 'card visible';
+  };
+  xhr.onerror = function() {
+    showState('네트워크 오류가 발생했습니다.', true, false);
+  };
+  xhr.send();
 }
 
 window.addEventListener('DOMContentLoaded', function() {
   currentClient = checkAuth();
-  $('inp-no').addEventListener('keydown', function(e) {
+  ge('btn-search').addEventListener('click', doSearch);
+  ge('inp-no').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') doSearch();
   });
 });
 </script>
-
 </body>
 </html>
