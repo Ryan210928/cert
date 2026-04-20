@@ -34,41 +34,19 @@
     gap: 12px;
     height: 64px;
   }
-  .logo-text {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--green-dark);
-  }
+  .logo-text { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; color: var(--green-dark); }
   .client-badge {
-    margin-left: auto;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    background: var(--green-light);
-    color: var(--green-dark);
-    font-weight: 600;
-    display: none;
+    margin-left: auto; font-size: 12px; padding: 4px 12px;
+    border-radius: 20px; background: var(--green-light); color: var(--green-dark);
+    font-weight: 600; display: none;
   }
   .client-badge.visible { display: inline-block; }
   main { max-width: 560px; margin: 2.5rem auto; padding: 0 1rem; }
-  .card {
-    background: #fff;
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 1.75rem;
-    margin-bottom: 1.25rem;
-  }
-  .card-title {
-    font-size: 13px; font-weight: 600; color: var(--gray-600);
-    letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 1.25rem;
-  }
+  .card { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.25rem; }
+  .card-title { font-size: 13px; font-weight: 600; color: var(--gray-600); letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 1.25rem; }
   #denied-screen { display: none; text-align: center; padding: 3rem 1.5rem; }
   #denied-screen.visible { display: block; }
-  .denied-icon {
-    width: 56px; height: 56px; background: var(--red-light); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;
-  }
+  .denied-icon { width: 56px; height: 56px; background: var(--red-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
   .denied-icon svg { width: 24px; height: 24px; }
   #denied-screen h2 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
   #denied-screen p { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
@@ -77,10 +55,9 @@
   .field { margin-bottom: 1rem; }
   .field label { display: block; font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
   select, input[type="text"] {
-    width: 100%; height: 44px; border: 1px solid var(--gray-200);
-    border-radius: 8px; padding: 0 14px; font-size: 15px; font-family: inherit;
-    color: var(--gray-900); background: #fff; outline: none;
-    transition: border-color .15s; appearance: none;
+    width: 100%; height: 44px; border: 1px solid var(--gray-200); border-radius: 8px;
+    padding: 0 14px; font-size: 15px; font-family: inherit; color: var(--gray-900);
+    background: #fff; outline: none; transition: border-color .15s; appearance: none;
   }
   select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3af' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -101,89 +78,41 @@
   .spinner {
     display: inline-block; width: 20px; height: 20px;
     border: 2.5px solid var(--gray-200); border-top-color: var(--green);
-    border-radius: 50%; animation: spin .7s linear infinite;
-    vertical-align: middle; margin-right: 8px;
+    border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 8px;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   #result-card { display: none; }
   #result-card.visible { display: block; }
   .meta-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 1rem; }
-  .badge {
-    font-size: 12px; padding: 3px 10px; border-radius: 20px;
-    background: var(--green-light); color: var(--green-dark); font-weight: 600; white-space: nowrap;
-  }
+  .badge { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: var(--green-light); color: var(--green-dark); font-weight: 600; white-space: nowrap; }
   .cert-no { font-size: 18px; font-weight: 700; letter-spacing: -0.5px; }
   .meta-details { display: flex; gap: 16px; font-size: 13px; color: var(--gray-600); margin-bottom: 1.25rem; flex-wrap: wrap; }
   .meta-details span strong { color: var(--gray-900); font-weight: 500; }
   .img-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; background: var(--gray-50); text-align: center; }
   .img-wrap img { max-width: 100%; display: block; margin: auto; }
   .img-caption { padding: 10px; font-size: 12px; color: var(--gray-400); border-top: 1px solid var(--gray-200); }
-
-  /* ── Footer ── */
-  footer {
-    background: #fff;
-    border-top: 1px solid var(--gray-200);
-    margin-top: 2rem;
-    padding: 2rem 1.5rem;
-  }
-  .footer-inner {
-    max-width: 560px;
-    margin: 0 auto;
-  }
-  .footer-company {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--gray-900);
-    margin-bottom: 0.75rem;
-  }
-  .footer-info {
-    font-size: 12px;
-    color: var(--gray-600);
-    line-height: 2;
-  }
-  .footer-info a {
-    color: var(--green-dark);
-    text-decoration: none;
-  }
+  footer { background: #fff; border-top: 1px solid var(--gray-200); margin-top: 2rem; padding: 2rem 1.5rem; }
+  .footer-inner { max-width: 560px; margin: 0 auto; }
+  .footer-company { font-size: 13px; font-weight: 700; color: var(--gray-900); margin-bottom: 0.75rem; }
+  .footer-info { font-size: 12px; color: var(--gray-600); line-height: 2; }
+  .footer-info a { color: var(--green-dark); text-decoration: none; }
   .footer-info a:hover { text-decoration: underline; }
-  .footer-divider {
-    border: none;
-    border-top: 1px solid var(--gray-200);
-    margin: 1rem 0;
-  }
-  .footer-cert {
-    font-size: 11px;
-    color: var(--gray-400);
-    line-height: 1.7;
-  }
-  .footer-links {
-    display: flex;
-    gap: 12px;
-    margin-top: 0.75rem;
-    flex-wrap: wrap;
-  }
-  .footer-links a {
-    font-size: 12px;
-    color: var(--gray-600);
-    text-decoration: none;
-    padding: 4px 10px;
-    border: 1px solid var(--gray-200);
-    border-radius: 20px;
-    transition: border-color .15s, color .15s;
-  }
+  .footer-divider { border: none; border-top: 1px solid var(--gray-200); margin: 1rem 0; }
+  .footer-cert { font-size: 11px; color: var(--gray-400); line-height: 1.7; }
+  .footer-links { display: flex; gap: 12px; margin-top: 0.75rem; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; color: var(--gray-600); text-decoration: none; padding: 4px 10px; border: 1px solid var(--gray-200); border-radius: 20px; transition: border-color .15s, color .15s; }
   .footer-links a:hover { border-color: var(--green); color: var(--green-dark); }
-
   @media (max-width: 480px) { main { margin: 1.5rem auto; } .card { padding: 1.25rem; } }
 </style>
 </head>
 <body>
 
 <script>
-const CONFIG = {
+var CONFIG = {
   SHEET_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vST2q6GtZFEh0HAwLemM-pejGdvuvsjsApAhxM7w-Ogh3QnbmcN109PrxwgPzoR2n2MR6DpKiadbYMD/pub?gid=0&single=true&output=csv",
   BASE_URL: "https://cert.parkelec.co.kr",
   CLIENTS: [
-    { client: "snt", key: "PE-SNT", label: "SNT다이내믹스" },
+    { client: "snt", key: "PE-SNT", label: "SNT다이내믹스" }
   ]
 };
 </script>
@@ -194,14 +123,10 @@ const CONFIG = {
 </header>
 
 <main>
-
   <div id="denied-screen">
     <div class="card">
       <div class="denied-icon">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="9" stroke="#dc2626" stroke-width="1.5"/>
-          <path d="M15 9l-6 6M9 9l6 6" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#dc2626" stroke-width="1.5"/><path d="M15 9l-6 6M9 9l6 6" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
       <h2>접근 권한이 없습니다</h2>
       <p>이 페이지는 인가된 접근 경로를 통해서만<br>열람할 수 있습니다.<br><br>담당자에게 문의해 주세요.<br>Tel. 051-917-5001~2</p>
@@ -244,7 +169,6 @@ const CONFIG = {
       </div>
     </div>
   </div>
-
 </main>
 
 <footer>
@@ -252,39 +176,60 @@ const CONFIG = {
     <p class="footer-company">Park Electronics Inc. (파크전자 주식회사)</p>
     <div class="footer-info">
       <div>Tel. 051-917-5001~2 &nbsp;|&nbsp; Fax. 051-917-5003 &nbsp;|&nbsp; <a href="mailto:park@parkelec.co.kr">park@parkelec.co.kr</a></div>
-      <div>부산시 사상구 대동로 303, 부산디지털밸리 306호 사무동 | 301호 공장동 | 302호 기술연구소</div>
+      <div>부산시 사상구 대동로 303, 부산디지털밸리 306호 사무동 | 301호 공장동 | 302호 연구소</div>
     </div>
     <div class="footer-links">
       <a href="https://www.parkelec.co.kr" target="_blank">홈페이지</a>
       <a href="https://pf.kakao.com/_tPNRX?default_tab=hometab" target="_blank">카카오채널</a>
       <a href="https://www.youtube.com/@ParkElec%ED%8C%8C%ED%81%AC%EC%A0%84%EC%9E%90/videos" target="_blank">유튜브</a>
+      <a href="https://www.iecex-certs.com/#/deliverables/REPORT/120135/view" target="_blank">IECEx 공장인증 (QAR)</a>
+      <a href="https://www.iecex-certs.com/#/deliverables/CERT/2001547/view" target="_blank">IECEx CoC (EXd 로드셀)</a>
     </div>
     <hr class="footer-divider">
-    <p class="footer-cert">
-      국제 방폭 IECEx Equipment Certificate (Load Cell) &nbsp;|&nbsp; IECEx Factory Certificate (Facility + Quality System)
-    </p>
+    <p class="footer-cert">국제 방폭 IECEx Equipment Certificate (Load Cell) &nbsp;|&nbsp; IECEx Factory Certificate (Facility + Quality System)</p>
   </div>
 </footer>
 
 <script>
 function $(id) { return document.getElementById(id); }
 
+// Drive URL → thumbnail URL
 function driveViewUrl(link) {
   var m = link.match(/\/file\/d\/([^\/\?&]+)/);
   if (m) return 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w2000';
-  var m2 = link.match(/[?&]id=([^&]+)/);
-  if (m2) return 'https://drive.google.com/thumbnail?id=' + m2[1] + '&sz=w2000';
   return link;
+}
+
+// 올바른 CSV 파서 (따옴표로 감싸진 필드 처리)
+function parseCsvLine(line) {
+  var result = [];
+  var cur = '';
+  var inQuote = false;
+  for (var i = 0; i < line.length; i++) {
+    var ch = line[i];
+    if (inQuote) {
+      if (ch === '"') {
+        if (line[i+1] === '"') { cur += '"'; i++; }
+        else inQuote = false;
+      } else {
+        cur += ch;
+      }
+    } else {
+      if (ch === '"') { inQuote = true; }
+      else if (ch === ',') { result.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+  }
+  result.push(cur.trim());
+  return result;
 }
 
 function parseCsv(text) {
   var rows = [];
   var lines = text.trim().split('\n');
   for (var i = 1; i < lines.length; i++) {
-    var cols = lines[i].split(',').map(function(c) {
-      c = c.trim().replace(/^"|"$/g, '');
-      try { return decodeURIComponent(escape(c)); } catch(e) { return c; }
-    });
+    if (!lines[i].trim()) continue;
+    var cols = parseCsvLine(lines[i]);
     if (cols.length >= 3) rows.push(cols);
   }
   return rows;
@@ -309,15 +254,13 @@ function checkAuth() {
   var matched = null;
   for (var i = 0; i < CONFIG.CLIENTS.length; i++) {
     if (CONFIG.CLIENTS[i].client === clientParam && CONFIG.CLIENTS[i].key === keyParam) {
-      matched = CONFIG.CLIENTS[i];
-      break;
+      matched = CONFIG.CLIENTS[i]; break;
     }
   }
   if (matched) {
     $('search-screen').className = 'visible';
-    var badge = $('client-badge');
-    badge.textContent = matched.label;
-    badge.className = 'client-badge visible';
+    $('client-badge').textContent = matched.label;
+    $('client-badge').className = 'client-badge visible';
     return matched.client;
   } else {
     $('denied-screen').className = 'visible';
@@ -330,13 +273,11 @@ var currentClient = null;
 function doSearch() {
   var product = $('sel-product').value.trim();
   var certNo  = $('inp-no').value.trim().toUpperCase();
-
   if (!product) { showState('제품 종류를 선택해 주세요.', true, false); return; }
   if (!certNo)  { showState('성적서 번호를 입력해 주세요.', true, false); return; }
-
   showState('조회 중...', false, true);
 
-  fetch(CONFIG.SHEET_CSV_URL + '&t=' + Date.now(), { redirect: 'follow', mode: 'cors' })
+  fetch(CONFIG.SHEET_CSV_URL + '&t=' + Date.now(), { redirect: 'follow' })
     .then(function(res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.text();
@@ -349,8 +290,7 @@ function doSearch() {
         if (r[1].toUpperCase() === certNo &&
             normalize(r[0]) === normalize(product) &&
             r[5] === currentClient) {
-          found = r;
-          break;
+          found = r; break;
         }
       }
       if (!found) {
@@ -365,7 +305,7 @@ function doSearch() {
       $('r-img').src = driveViewUrl(found[2]);
       $('result-card').className = 'card visible';
     })
-    .catch(function() {
+    .catch(function(err) {
       showState('데이터를 불러올 수 없습니다.<br>잠시 후 다시 시도해 주세요.', true, false);
     });
 }
