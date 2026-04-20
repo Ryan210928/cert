@@ -133,6 +133,7 @@ var CONFIG = {
         <p style="display:none;padding:2rem;color:#9ca3af;font-size:13px">이미지를 불러올 수 없습니다.<br>Drive 공유 설정을 확인해 주세요.</p>
         <p class="img-caption">검사성적서 원본 이미지</p>
       </div>
+      <a id="r-dl" href="#" target="_blank" style="display:block;margin-top:1rem;width:100%;height:44px;line-height:44px;text-align:center;background:#fff;border:1.5px solid #41B14A;border-radius:8px;color:#2d8a35;font-size:14px;font-weight:600;text-decoration:none;box-sizing:border-box;" onmouseover="this.style.background='#e8f7e9'" onmouseout="this.style.background='#fff'">↓ &nbsp;성적서 다운로드</a>
     </div>
   </div>
 </main>
@@ -258,6 +259,7 @@ function doSearch() {
     imgEl.style.display = 'block';
     imgEl.nextElementSibling.style.display = 'none';
     imgEl.src = driveViewUrl(found[2]);
+    ge('r-dl').href = found[2];
     ge('result-card').className = 'card visible';
   };
   xhr.onerror = function() {
