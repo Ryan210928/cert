@@ -35,6 +35,10 @@
     height: 64px;
   }
   .logo-img { height: 36px; width: auto; display: block; }
+  .logo-fallback {
+    font-size: 15px; font-weight: 700; letter-spacing: -0.3px;
+    color: var(--green-dark);
+  }
   .client-badge {
     margin-left: auto;
     font-size: 12px;
@@ -88,11 +92,11 @@
     border-radius: 8px; font-size: 16px; font-weight: 600; font-family: inherit;
     cursor: pointer; transition: background .15s, transform .1s; margin-top: 0.5rem;
   }
-  .btn-search:hover  { background: var(--green-dark); }
+  .btn-search:hover { background: var(--green-dark); }
   .btn-search:active { transform: scale(0.985); }
   #state-msg { text-align: center; padding: 1.5rem 0; color: var(--gray-400); font-size: 14px; display: none; }
   #state-msg.visible { display: block; }
-  #state-msg.error   { color: var(--red); }
+  #state-msg.error { color: var(--red); }
   .spinner {
     display: inline-block; width: 20px; height: 20px;
     border: 2.5px solid var(--gray-200); border-top-color: var(--green);
@@ -130,7 +134,7 @@ const CONFIG = {
 </script>
 
 <header>
-  <img class="logo-img" src="data:image/jpeg;base64,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" alt="Park Electronics">
+  <span class="logo-fallback">Park Electronics Inc.</span>
   <span class="client-badge" id="client-badge"></span>
 </header>
 
@@ -194,41 +198,45 @@ const CONFIG = {
 function $(id) { return document.getElementById(id); }
 
 function driveViewUrl(link) {
-  const m = link.match(/\/file\/d\/([^\/\?]+)/);
-  if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w2000`;
-  const m2 = link.match(/[?&]id=([^&]+)/);
-  if (m2) return `https://drive.google.com/thumbnail?id=${m2[1]}&sz=w2000`;
+  var m = link.match(/\/file\/d\/([^\/\?]+)/);
+  if (m) return 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w2000';
+  var m2 = link.match(/[?&]id=([^&]+)/);
+  if (m2) return 'https://drive.google.com/thumbnail?id=' + m2[1] + '&sz=w2000';
   return link;
 }
 
 function parseCsv(text) {
-  const rows = [];
-  const lines = text.trim().split('\n');
-  for (let i = 1; i < lines.length; i++) {
-    const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+  var rows = [];
+  var lines = text.trim().split('\n');
+  for (var i = 1; i < lines.length; i++) {
+    var cols = lines[i].split(',').map(function(c) { return c.trim().replace(/^"|"$/g, ''); });
     if (cols.length >= 3) rows.push(cols);
   }
   return rows;
 }
 
-function showState(msg, isError = false, showSpinner = false) {
-  const el = $('state-msg');
-  el.innerHTML = showSpinner ? `<span class="spinner"></span>${msg}` : msg;
+function showState(msg, isError, showSpinner) {
+  var el = $('state-msg');
+  el.innerHTML = showSpinner ? '<span class="spinner"></span>' + msg : msg;
   el.className = 'visible' + (isError ? ' error' : '');
   $('result-card').className = 'card';
 }
 function clearState() { $('state-msg').className = ''; }
 
 function checkAuth() {
-  const params = new URLSearchParams(location.search);
-  const clientParam = params.get('client');
-  const keyParam    = params.get('key');
-  const matched = CONFIG.CLIENTS.find(
-    c => c.client === clientParam && c.key === keyParam
-  );
+  var params = new URLSearchParams(location.search);
+  var clientParam = params.get('client');
+  var keyParam = params.get('key');
+  var matched = null;
+  for (var i = 0; i < CONFIG.CLIENTS.length; i++) {
+    if (CONFIG.CLIENTS[i].client === clientParam && CONFIG.CLIENTS[i].key === keyParam) {
+      matched = CONFIG.CLIENTS[i];
+      break;
+    }
+  }
   if (matched) {
     $('search-screen').className = 'visible';
-    const badge = $('client-badge');
+    var badge = $('client-badge');
     badge.textContent = matched.label;
     badge.className = 'client-badge visible';
     return matched.client;
@@ -238,50 +246,54 @@ function checkAuth() {
   }
 }
 
-let currentClient = null;
+var currentClient = null;
 
-async function doSearch() {
-  const product = $('sel-product').value.trim();
-  const certNo  = $('inp-no').value.trim().toUpperCase();
+function doSearch() {
+  var product = $('sel-product').value.trim();
+  var certNo  = $('inp-no').value.trim().toUpperCase();
 
-  if (!product) { showState('제품 종류를 선택해 주세요.', true); return; }
-  if (!certNo)  { showState('성적서 번호를 입력해 주세요.', true); return; }
+  if (!product) { showState('제품 종류를 선택해 주세요.', true, false); return; }
+  if (!certNo)  { showState('성적서 번호를 입력해 주세요.', true, false); return; }
 
   showState('조회 중...', false, true);
 
-  let rows;
-  try {
-    const res = await fetch(CONFIG.SHEET_CSV_URL + '&t=' + Date.now());
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    rows = parseCsv(await res.text());
-  } catch(e) {
-    showState('데이터를 불러올 수 없습니다.<br>잠시 후 다시 시도해 주세요.', true);
-    return;
-  }
-
-  const found = rows.find(r =>
-    r[1].toUpperCase() === certNo &&
-    r[0].replace(/\s/g,'') === product.replace(/\s/g,'') &&
-    r[5] === currentClient
-  );
-
-  if (!found) {
-    showState(`"${certNo}" 성적서를 찾을 수 없습니다.`, true);
-    return;
-  }
-
-  clearState();
-  $('r-type').textContent  = found[0];
-  $('r-no').textContent    = found[1];
-  $('r-date').textContent  = found[3] || '—';
-  $('r-model').textContent = found[4] || '—';
-  $('r-img').src = driveViewUrl(found[2]);
-  $('result-card').className = 'card visible';
+  fetch(CONFIG.SHEET_CSV_URL + '&t=' + Date.now())
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    })
+    .then(function(text) {
+      var rows = parseCsv(text);
+      var found = null;
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        if (r[1].toUpperCase() === certNo &&
+            r[0].replace(/\s/g,'') === product.replace(/\s/g,'') &&
+            r[5] === currentClient) {
+          found = r;
+          break;
+        }
+      }
+      if (!found) {
+        showState('"' + certNo + '" 성적서를 찾을 수 없습니다.', true, false);
+        return;
+      }
+      clearState();
+      $('r-type').textContent  = found[0];
+      $('r-no').textContent    = found[1];
+      $('r-date').textContent  = found[3] || '—';
+      $('r-model').textContent = found[4] || '—';
+      $('r-img').src = driveViewUrl(found[2]);
+      $('result-card').className = 'card visible';
+    })
+    .catch(function() {
+      showState('데이터를 불러올 수 없습니다.<br>잠시 후 다시 시도해 주세요.', true, false);
+    });
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', function() {
   currentClient = checkAuth();
-  $('inp-no').addEventListener('keydown', e => {
+  $('inp-no').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') doSearch();
   });
 });
